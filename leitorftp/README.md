@@ -57,3 +57,9 @@ gnus=# select * from files;
  2e6b30cf-b89d-4f0d-bcfa-3430f57985ed | 20210606194805018-teste-ftp.txt | RECEBIDO
 (1 row)
 ```
+
+# Rodar o Kafka
+```
+docker-compose -f docker-kafka.yml up
+```
+

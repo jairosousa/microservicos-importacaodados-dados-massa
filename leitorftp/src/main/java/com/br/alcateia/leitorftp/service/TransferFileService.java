@@ -2,6 +2,7 @@ package com.br.alcateia.leitorftp.service;
 
 import com.br.alcateia.leitorftp.domain.FileSave;
 import com.br.alcateia.leitorftp.service.file.CreateFileSaveService;
+import com.br.alcateia.leitorftp.service.file.SendFileKakfaService;
 import com.br.alcateia.leitorftp.service.ftp.FileTransfer;
 import com.br.alcateia.leitorftp.service.ftp.TransferFTPService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,9 +20,9 @@ public class TransferFileService {
 
     @Autowired
     private CreateFileSaveService createFileSaveService;
-//
-//    @Autowired
-//    private SendFileKakfaService sendFileKakfaService;
+
+    @Autowired
+    private SendFileKakfaService sendFileKakfaService;
 
     @Scheduled(fixedRate = 100 * 60)
     public void execute() throws IOException {
@@ -34,6 +35,7 @@ public class TransferFileService {
                             .path(fileTransfer.getPath())
                             .build());
             fileTransfer.setUuid(uui);
+            sendFileKakfaService.execute(fileTransfer);
         }
 
     }
